@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="main.css" />
+    <title>Speedtest</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
+    <script src="/socket.io/socket.io.js" defer></script>
+    <script src="index.js" defer></script>
+  </head>
+  <body>
+    <section id="control" class="card">
+      <div class="ping">
+        <label for="pingSend">Number of sending packages</label>
+        <input
+          type="number"
+          id="pingSend"
+          placeholder="Type number of packages to send..."
+          value="10"
+        />
+        <label for="pingHost">Host to ping</label>
+        <input
+          type="text"
+          id="pingHost"
+          placeholder="Type host to ping..."
+          value="google.com"
+        />
+        <div class="checkboxes">
+          <label for="pingCheckbox">Ping test</label>
+          <input
+            type="checkbox"
+            name="pingCheckbox"
+            id="pingCheckbox"
+            checked
+          />
+          <label for="speedtestCheckbox">Speed test</label>
+          <input
+            type="checkbox"
+            name="speedtestCheckbox"
+            id="speedtestCheckbox"
+            checked
+          />
+        </div>
+      </div>
+      <div class="buttons">
+        <button id="start">Start</button>
+        <button id="export">Export</button>
+      </div>
+    </section>
+    <section id="exportMenu" class="hidden">
+      <div class="buttons">
+        <label for="typeData">Type of data for export</label>
+        <select id="typeData">
+          <option value="csv" selected>CSV</option>
+          <option value="json">JSON</option>
+        </select>
+        <button id="exportData">Export data</button>
+        <button id="saveData">Save data</button>
+        <button id="removeData">Remove data</button>
+        <button id="close">Close</button>
+      </div>
+      <table id="saveDataList">
+        <thead>
+          <tr>
+            <th>
+              <input type="checkbox" name="file" id="selectAllFiles" /><label
+                for="selectAllFiles"
+                >Select</label
+              >
+            </th>
+            <th>Name</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+    <section id="ping" class="card">
+      <h2>Ping stats</h2>
+      <span>Current ping results</span>
+      <span id="totalPing">Total ping: 0ms</span>
+      <table class="data" id="pingData">
+        <thead>
+          <tr>
+            <th>Step</th>
+            <th>Host</th>
+            <th>Loss%</th>
+            <th>Sent</th>
+            <th>Last</th>
+            <th>Avg</th>
+            <th>Best</th>
+            <th>Worst</th>
+            <th>Deviation</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+    <section id="speedtest" class="card">
+      <h2>Speedtest stats</h2>
+      <span>List of actual download and upload speed</span>
+      <span id="totalDownload">Download: 0 Mbps</span>
+      <span id="totalUpload">Upload: 0 Mbps</span>
+      <ul id="speedtestData" class="data"></ul>
+    </section>
+    <section id="charts" class="card hidden">
+      <canvas id="chart"></canvas>
+    </section>
+  </body>
+</html>
