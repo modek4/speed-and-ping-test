@@ -80,7 +80,7 @@ const pingTest = async (url, cycles, socket) => {
 
 //? Run speed test
 const speedTest = async (socket) => {
-  let command = `speedtest-cli --secure --json`;
+  let command = `/usr/local/bin/speedtest-cli --secure --json`;
   console.log(`User running speed test: ${command}`);
   exec(command, (error, stdout, stderr) => {
     if (error) {
